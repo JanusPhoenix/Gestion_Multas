@@ -15,7 +15,7 @@ body{
 }
 
 .error {
-	background-color:yellow;
+    background-color:yellow;
 }
 
 #menu{
@@ -29,7 +29,7 @@ body{
     padding:5px;
 }
 
-#usuario {    
+#cliente {    
     display:none;
     position: absolute;
     top:50%;
@@ -73,7 +73,7 @@ body{
     margin-top:-150px;
     padding:5px;
 }
-#altaUsu{
+#altaCli{
     display:none;
     position: absolute;
     top:50%;
