@@ -10,7 +10,8 @@ function inicio(){
 }
 //-----------------Funciones para mostrar formularios y mensajes--------------//
 //Funcion para mostrar los mensajes
-function mensaje(sMensaje){	
+function mensaje(sMensaje){
+    //modificar para quitar el texcontent
     var oTextoMensaje =document.getElementById("textoMensaje");
     oTextoMensaje.textContent = sMensaje;
     var oCapaMensaje = document.getElementById("mensajes");
