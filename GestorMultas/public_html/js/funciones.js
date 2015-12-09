@@ -10,10 +10,12 @@ function inicio(){
 }
 //-----------------Funciones para mostrar formularios y mensajes--------------//
 //Funcion para mostrar los mensajes
-function mensaje(sMensaje){
+function mensaje(sMensaje){         
     //modificar para quitar el texcontent
     var oTextoMensaje =document.getElementById("textoMensaje");
-    oTextoMensaje.textContent = sMensaje;
+    var oTextoInsertar = document.createTextNode(sMensaje);
+    //oTextoMensaje.textContent = sMensaje;    
+    oTextoMensaje.appendChild(oTextoInsertar);
     var oCapaMensaje = document.getElementById("mensajes");
     oCapaMensaje.style.display = "block";
     var oCapaTransparente = document.getElementById("capaTransparente");
@@ -21,6 +23,8 @@ function mensaje(sMensaje){
 }
 //Funcion para ocultar los mensajes
 function ocultarMensaje(){
+    var oTextoMensaje =document.getElementById("textoMensaje");
+    oTextoMensaje.removeChild(oTextoMensaje.firstChild);
     var oCapaMensaje = document.getElementById("mensajes");
     oCapaMensaje.style.display = "none";
     var oCapaTransparente = document.getElementById("capaTransparente");
