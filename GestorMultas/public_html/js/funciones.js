@@ -12,14 +12,33 @@ function inicio(){
 //Funcion para mostrar los mensajes
 function mensaje(sMensaje){         
     //modificar para quitar el texcontent
-    var oTextoMensaje =document.getElementById("textoMensaje");
-    var oTextoInsertar = document.createTextNode(sMensaje);
-    //oTextoMensaje.textContent = sMensaje;    
-    oTextoMensaje.appendChild(oTextoInsertar);
-    var oCapaMensaje = document.getElementById("mensajes");
-    oCapaMensaje.style.display = "block";
-    var oCapaTransparente = document.getElementById("capaTransparente");
-    oCapaTransparente.style.zIndex = 1;
+//    var oTextoMensaje =document.getElementById("textoMensaje");
+//    var oTextoInsertar = document.createTextNode(sMensaje);
+//    //oTextoMensaje.textContent = sMensaje;    
+//    oTextoMensaje.appendChild(oTextoInsertar);
+//    var oCapaMensaje = document.getElementById("mensajes");
+//    oCapaMensaje.style.display = "block";
+//    var oCapaTransparente = document.getElementById("capaTransparente");
+//    oCapaTransparente.style.zIndex = 1;
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "30000",
+        "hideDuration": "10000",
+        "timeOut": "50000",
+        "extendedTimeOut": "10000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+        
+    };
+    toastr["info"](sMensaje, "Mensaje");
 }
 //Funcion para ocultar los mensajes
 function ocultarMensaje(){
