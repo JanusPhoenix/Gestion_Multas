@@ -6,7 +6,7 @@ function inicio(){
     document.getElementById("cli").addEventListener('click',mostrarFomularioCliente,false);
     document.getElementById("altaCliente").addEventListener('click',mostrarAltaCliente,false);
     document.getElementById("enviar").addEventListener("click",clienteN,false);
-    document.getElementById("boton").addEventListener('click',ocultarMensaje,false);
+    
 }
 //-----------------Funciones para mostrar formularios y mensajes--------------//
 //Funcion para mostrar los mensajes
@@ -41,14 +41,14 @@ function mensaje(sMensaje){
     toastr["info"](sMensaje, "Mensaje");
 }
 //Funcion para ocultar los mensajes
-function ocultarMensaje(){
-    var oTextoMensaje =document.getElementById("textoMensaje");
-    oTextoMensaje.removeChild(oTextoMensaje.firstChild);
-    var oCapaMensaje = document.getElementById("mensajes");
-    oCapaMensaje.style.display = "none";
-    var oCapaTransparente = document.getElementById("capaTransparente");
-    oCapaTransparente.style.zIndex = -1;
-}
+//function ocultarMensaje(){
+//    var oTextoMensaje =document.getElementById("textoMensaje");
+//    oTextoMensaje.removeChild(oTextoMensaje.firstChild);
+//    var oCapaMensaje = document.getElementById("mensajes");
+//    oCapaMensaje.style.display = "none";
+//    var oCapaTransparente = document.getElementById("capaTransparente");
+//    oCapaTransparente.style.zIndex = -1;
+//}
 
 function mostrarFomularioCliente(){
     var oMenu = document.getElementById("menu");

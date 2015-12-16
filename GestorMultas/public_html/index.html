@@ -15,21 +15,20 @@ and open the template in the editor.
         <script type="text/javascript" src="js/objetos.js"></script>
         <script type="text/javascript" src="js/funciones.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
-        <script type="text/javascript"  src="js/toastr.js"></script>
-        
+        <script type="text/javascript"  src="js/toastr.js"></script>   
     </head>
     <body>
-        <div id="menu">
-            <table border="1">
-                <tr><td width="300" align="center">MENU GESTIONES</td></tr>
+        <div id="menu" class="table-responsive">
+        <table class="table table-hover">
+            <tr><td width="300" align="center">MENU GESTIONES</td></tr>
                 <tr id="cli"><td>1.CLIENTES</td></tr>
                 <tr ><td>2.RECLAMOS</td></tr>
                 <tr><td>3.EMPLEADOS</td></tr>
-                <tr><td>4.FACTURA</td></tr>                
-            </table>
+                <tr><td>4.FACTURA</td></tr>
+        </table>
         </div>
-        <div id="cliente">
-            <table border="1">
+        <div id="cliente" class="table-responsive">
+            <table class="table table-hover">
                 <tr><td width="300" align="center">MENU CLIENTE</td></tr>
                 <tr id="altaCliente"><td>1.ALTA CLIENTE</td></tr>
                 <tr><td>2.MODIFICAR CLIENTE</td></tr>
@@ -37,8 +36,8 @@ and open the template in the editor.
                 <tr><td>4.SALIR</td></tr>                
             </table>
         </div>
-        <div id="reclamo">
-            <table border="1">
+        <div id="reclamo" class="table-responsive">
+            <table class="table table-hover">
                 <tr><td width="300" align="center">MENU RECLAMOS</td></tr>
                 <tr><td>1.NUEVO RECLAMO</td></tr>
                 <tr><td>2.ACTUALIZACION DE RECLAMO</td></tr>
@@ -46,8 +45,8 @@ and open the template in the editor.
                 <tr><td>4.SALIR</td></tr>                
             </table>
         </div>
-        <div id="empleado">
-            <table border="1">
+        <div id="empleado" class="table-responsive">
+            <table class="table table-hover">
                 <tr><td width="300" align="center">MENU EMPLEADOS</td></tr>
                 <tr><td>1.ALTA EMPLEADO</td></tr>
                 <tr><td>2.MODIFICAR EMPLEADO</td></tr>
@@ -55,8 +54,8 @@ and open the template in the editor.
                 <tr><td>4.SALIR</td></tr>                
             </table>
         </div>
-        <div id="factura">
-            <table border="1">
+        <div id="factura" class="table-responsive">
+            <table class="table table-hover">
                 <tr><td width="300" align="center">MENU FACTURAS</td></tr>
                 <tr><td>1.EMITIR FACTURA</td></tr>
                 <tr><td>2.VER HISTORIAL DE FACTURAS</td></tr>
@@ -67,16 +66,16 @@ and open the template in the editor.
             <fieldset>
                 <legend>Datos de cliente</legend>
                 <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input name="nombre"  type="text" id="nombre" placeholder="Nombre" class="form-control" tabindex="1" title="Nombre">
+                    <label for="nombre">Nombre</label>
+                    <input name="nombre"  type="text" id="nombre" placeholder="Nombre" class="form-control" tabindex="1" title="Nombre">
                 </div>
                 <div class="form-group">
-                        <label for="ape">Apellidos</label>
-                        <input name="ape" type="text" id="email" placeholder="Apellidos" class="form-control" tabindex="2" title="Apellidos">
+                    <label for="ape">Apellidos</label>
+                    <input name="ape" type="text" id="email" placeholder="Apellidos" class="form-control" tabindex="2" title="Apellidos">
                 </div>	   		
                 <div class="form-group">
-                        <label for="nif">Dni</label>
-                        <input name="nif" type="text" id="telefono" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                    <label for="nif">Dni</label>
+                    <input name="nif" type="text" id="telefono" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
                 </div>
             </fieldset>
             <div class="form-group col-xs-12">
