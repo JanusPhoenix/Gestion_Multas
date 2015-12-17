@@ -8,6 +8,13 @@ function inicio(){
     document.getElementById("enviar").addEventListener("click",clienteN,false);
     
 }
+//-----------------Funciones para ocultar formularios-------------------------//
+function ocultarTipoCliente(){
+    var oTipoAnual = document.getElementById("grupoTarifaMiembro");
+    var oTipoMes = document.getElementById("grupoTarifaMes");
+    oTipoAnual.style.display = "none";
+    oTipoMes.style.display = "none";
+}
 //-----------------Funciones para mostrar formularios y mensajes--------------//
 //Funcion para mostrar los mensajes
 function mensaje(sMensaje){         
@@ -28,17 +35,20 @@ function mensaje(sMensaje){
         "positionClass": "toast-top-center",
         "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "30000",
-        "hideDuration": "10000",
-        "timeOut": "50000",
-        "extendedTimeOut": "10000",
+        "showDuration": "3000",
+        "hideDuration": "3000",
+        "timeOut": "3000",
+        "extendedTimeOut": "3000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
         
     };
-    toastr["info"](sMensaje, "Mensaje");
+    if(sMensaje == "Cliente dado de alta")
+        toastr["success"](sMensaje, "Mensaje");
+    else
+        toastr["error"](sMensaje, "Mensaje");
 }
 //Funcion para ocultar los mensajes
 //function ocultarMensaje(){
@@ -91,7 +101,7 @@ function validarUsuario(){
             bValido = false;		
             document.altaCli.nombre.focus();		
         }
-        sErrores += "\nNombre incorrecto";
+        sErrores += "Nombre incorrecto<br>";
         document.altaCli.nombre.className = "form-control error";//Marcaciones de error, si entra lo marcara, si pasa por el else lo desmarca.
     }else{
         document.altaCli.nombre.className = "form-control";	
@@ -107,7 +117,7 @@ function validarUsuario(){
             bValido = false;		
             document.altaCli.ape.focus();		
         }
-        sErrores += "\nApellidos incorrecto";
+        sErrores += "Apellidos incorrecto<br>";
         document.altaCli.ape.className = "form-control error";
 
     }
@@ -126,11 +136,16 @@ function validarUsuario(){
             bValido = false;		
             document.altaCli.nif.focus();		
         }
-        sErrores += "\nNif incorrecto";
+        sErrores += "Nif incorrecto<br>";
         document.altaCli.nif.className = "form-control error";	
     }
     else {
         document.altaCli.nif.className = "form-control";	
+    }
+    
+    if(document.altaCli.tipoCli[0].checked){
+        var formulario = document.getElementById("grupoTarifaMiembro");
+        formulario.style.display = "block";
     }
                 
     //Condicion para enviar formulario solo si todos los datos son correctos

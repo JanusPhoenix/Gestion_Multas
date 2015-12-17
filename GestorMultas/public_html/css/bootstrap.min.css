@@ -105,3 +105,9 @@ body{
 	text-align:center;
 	z-index: 2;
 }
+#grupoTarifaMiembro{
+    display:none;
+}
+#grupoTarifaMes{
+    display:none;
+}
