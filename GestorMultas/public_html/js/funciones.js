@@ -103,8 +103,10 @@ function validarUsuario(){
         }
         sErrores += "Nombre incorrecto<br>";
         document.altaCli.nombre.className = "form-control error";//Marcaciones de error, si entra lo marcara, si pasa por el else lo desmarca.
+        //hacerlo con el listClass.add("error")
     }else{
-        document.altaCli.nombre.className = "form-control";	
+        document.altaCli.nombre.className = "form-control";
+        //eliminar con el listClass.remove("error");
     }
         
 	//Validacion del apellido
@@ -118,11 +120,11 @@ function validarUsuario(){
             document.altaCli.ape.focus();		
         }
         sErrores += "Apellidos incorrecto<br>";
-        document.altaCli.ape.className = "form-control error";
+        document.altaCli.ape.listClass.add("error");
 
     }
     else {
-        document.altaCli.ape.className = "form-control";	
+        document.altaCli.ape.listClass.remove("error");	
     }
         
         //validacion del campo nif
