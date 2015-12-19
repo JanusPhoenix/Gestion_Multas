@@ -102,10 +102,9 @@ function validarUsuario(){
             document.altaCli.nombre.focus();		
         }
         sErrores += "Nombre incorrecto<br>";
-        document.altaCli.nombre.className = "form-control error";//Marcaciones de error, si entra lo marcara, si pasa por el else lo desmarca.
-        //hacerlo con el listClass.add("error")
+        document.altaCli.nombre.classList.add("error");//Marcaciones de error, si entra lo marcara, si pasa por el else lo desmarca.
     }else{
-        document.altaCli.nombre.className = "form-control";
+        document.altaCli.nombre.classList.remove("error");
         //eliminar con el listClass.remove("error");
     }
         
@@ -120,13 +119,13 @@ function validarUsuario(){
             document.altaCli.ape.focus();		
         }
         sErrores += "Apellidos incorrecto<br>";
-        document.altaCli.ape.listClass.add("error");
+        document.altaCli.ape.classList.add("error");
 
     }
     else {
-        document.altaCli.ape.listClass.remove("error");	
+        document.altaCli.ape.classList.remove("error");	
     }
-        
+    
         //validacion del campo nif
     var sNif = document.altaCli.nif.value.trim();
     document.altaCli.nif.value = document.altaCli.nif.value.trim();
@@ -139,10 +138,10 @@ function validarUsuario(){
             document.altaCli.nif.focus();		
         }
         sErrores += "Nif incorrecto<br>";
-        document.altaCli.nif.className = "form-control error";	
+        document.altaCli.nif.classList.add("error");	
     }
     else {
-        document.altaCli.nif.className = "form-control";	
+        document.altaCli.nif.classList.remove("error");	
     }
     
     if(document.altaCli.tipoCli[0].checked){
