@@ -31,9 +31,9 @@ and open the template in the editor.
             <table class="table table-hover">
                 <tr><td width="300" align="center">MENU CLIENTE</td></tr>
                 <tr id="altaCliente"><td>1.ALTA CLIENTE</td></tr>
-                <tr><td>2.MODIFICAR CLIENTE</td></tr>
-                <tr><td>3.ELIMINAR CLIENTE</td></tr>
-                <tr><td>4.SALIR</td></tr>                
+                <tr id="modCli"><td>2.MODIFICAR CLIENTE</td></tr>
+                <tr id="eliminar"><td>3.ELIMINAR CLIENTE</td></tr>
+                <tr id="mostrar"><td>4.SALIR</td></tr>                
             </table>
         </div>
         <div id="reclamo" class="table-responsive">
@@ -75,24 +75,73 @@ and open the template in the editor.
                 </div>	   		
                 <div class="form-group">
                     <label for="nif">Dni</label>
-                    <input name="nif" type="text" id="telefono" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                    <input name="nif" type="text" id="nif" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
                 </div>
-                <div class="form-group">
-                  <input type="radio" name="tipoCli" id="miembro" value="miembro">Miembro
-                  <input type="radio" name="tipoCli" id="mensual" value="mensual">Mensual
-                </div>
-                <div class="form-group" id="grupoTarifaMiembro">
-                    <label for="tarifaMi">Tarifa miembro</label>
-                    <input name="tarifaM" type="text" id="tarifaMi" class="form-control" placeholder="Tarifa Anual Miembro" tabindex="3" title="tarifaM">
-                </div>
-                <div class="form-group" id="grupoTarifaMes">
-                    <label for="tarifaMes">Tarifa Mensual</label>
-                    <input name="tarifaMes" type="text" id="tarifaMes" class="form-control" placeholder="Tarifa Mensual" tabindex="3" title="tarifaMes">
-                </div>
+                 <div class="form-group">
+                    <label for="tel">Telefono Contacto</label>
+                    <input name="tel" type="text" id="telefono" class="form-control" placeholder="Telefono" tabindex="3" title="Telefono">
+                </div> 
             </fieldset>
             <div class="form-group col-xs-12">
                <input type="button" name="enviar" id="enviar" class="btn btn-primary" tabindex="10" value="Enviar">
-               <input type="reset" tabindex="11" class="btn btn-primary" value="Borrar">
+               <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+               <input type="button" id="atras" onclick="volverAtrasCliente();" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+            </div>
+        </form>
+        <!--Formulario para pedir el dni que sera usado para eliminar un cliente -->
+        <form role="form" action="" name="eliminarDni" method="GET" id="peticionDni">
+            <fieldset>
+                <legend>Datos</legend>
+                <div class="form-group">
+                    <label for="nif2">Introduce dni para borrar</label>
+                    <input name="nif2" type="text" id="nif2" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                </div>
+                <div class="form-group col-xs-12">
+               <input type="button" name="enviar" id="enviarDni" class="btn btn-primary" tabindex="10" value="Enviar">
+               <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+                <input type="button" id="atrasBorrarCLiente" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">               
+            </div>
+            </fieldset>
+        </form>
+        <!--Formulario para pedir el dni que sera usado para modificar un cliente -->
+        <form role="form" action="" name="modificaDni" method="GET" id="modificaDni">
+            <fieldset>
+                <legend>Datos</legend>
+                <div class="form-group">
+                    <label for="nif2">Introduce dni para modificar</label>
+                    <input name="modiNif" type="text" id="modiNif" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                </div>
+                <div class="form-group col-xs-12">
+               <input type="button" name="enviar" id="modDni" class="btn btn-primary" tabindex="10" value="Enviar">
+               <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+               <input type="button" id="atrasModificaCLiente" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">               
+            </div>
+            </fieldset>
+        </form>
+        <form role="form" action="" name="modCli" method="GET" id="modCli">
+            <fieldset>
+                <legend>Datos de cliente</legend>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input name="nombreMod"  type="text" id="nombreMod" placeholder="Nombre" class="form-control" tabindex="1" title="Nombre">
+                </div>
+                <div class="form-group">
+                    <label for="ape">Apellidos</label>
+                    <input name="apeMod" type="text" id="apeMod" placeholder="Apellidos" class="form-control" tabindex="2" title="Apellidos">
+                </div>	   		
+                <div class="form-group">
+                    <label for="nif">Dni</label>
+                    <input name="nifMod" type="text" id="nifMod" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                </div>
+                 <div class="form-group">
+                    <label for="tel">Telefono Contacto</label>
+                    <input name="telMod" type="text" id="telefonoMod" class="form-control" placeholder="Telefono" tabindex="3" title="Telefono">
+                </div> 
+            </fieldset>
+            <div class="form-group col-xs-12">
+               <input type="button" name="enviar" id="enviarMod" class="btn btn-primary" tabindex="10" value="Enviar">
+               <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+               <input type="button" id="atras" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
             </div>
         </form>
         <div id="mensajes">

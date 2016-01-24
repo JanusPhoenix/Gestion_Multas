@@ -6,19 +6,25 @@ function inicio(){
     document.getElementById("cli").addEventListener('click',mostrarFomularioCliente,false);
     document.getElementById("altaCliente").addEventListener('click',mostrarAltaCliente,false);
     document.getElementById("enviar").addEventListener("click",clienteN,false);
-    
+    //Para mostrar y probar
+    document.getElementById("mostrar").addEventListener('click',muestraClientes,false);
+    //para eliminar cliente
+    document.getElementById("enviarDni").addEventListener('click',borrarCliente,false);
+    //mostrar formulario peticion dni para eliminar un cliente
+    document.getElementById("eliminar").addEventListener("click",mostrarPeticionDniBorrarCliente,false);
+    //Volver atras borrado Cliente
+    document.getElementById("atrasBorrarCLiente").addEventListener("click",volverAtrasBorradoCliente,false);
+    //Clic para mostrar dni de mod cliente
+    document.getElementById("modCli").addEventListener("click",modCliDni,false);
+    //volver atras del boton de peticion dni de modificar cliente
+    document.getElementById("atrasModificaCLiente").addEventListener("click",volverAtrasModCliente,false);
 }
 //-----------------Funciones para ocultar formularios-------------------------//
-function ocultarTipoCliente(){
-    var oTipoAnual = document.getElementById("grupoTarifaMiembro");
-    var oTipoMes = document.getElementById("grupoTarifaMes");
-    oTipoAnual.style.display = "none";
-    oTipoMes.style.display = "none";
-}
+
 //-----------------Funciones para mostrar formularios y mensajes--------------//
 //Funcion para mostrar los mensajes
 function mensaje(sMensaje){         
-    //modificar para quitar el texcontent
+    //modificar para quitar el textcontent
 //    var oTextoMensaje =document.getElementById("textoMensaje");
 //    var oTextoInsertar = document.createTextNode(sMensaje);
 //    //oTextoMensaje.textContent = sMensaje;    
@@ -45,7 +51,7 @@ function mensaje(sMensaje){
         "hideMethod": "fadeOut"
         
     };
-    if(sMensaje == "Cliente dado de alta")
+    if(sMensaje == "Cliente dado de alta" || sMensaje == "Cliente borrado")
         toastr["success"](sMensaje, "Mensaje");
     else
         toastr["error"](sMensaje, "Mensaje");
@@ -66,6 +72,12 @@ function mostrarFomularioCliente(){
     oMenu.style.display = "none";
     oUsu.style.display = "block";
 }
+function volverAtrasCliente(){
+    var oUsu = document.getElementById("cliente");
+    var oFormularioAlta = document.altaCli;
+    oUsu.style.display = "block";
+    oFormularioAlta.style.display = "none";
+}
 
 function mostrarAltaCliente(){
     var oAlta = document.getElementById("cliente");
@@ -73,19 +85,61 @@ function mostrarAltaCliente(){
     oAlta.style.display = "none";
     oFormularioAlta.style.display = "block";
 }
+function mostrarPeticionDniBorrarCliente(){
+    var oFormularioAlta = document.getElementById("cliente");
+    oFormularioAlta.style.display = "none";
+    var oFormularioDni = document.getElementById("peticionDni");
+    oFormularioDni.style.display = "block";
+}
+//Volver atras del boton de peticion dni del borrado de cliente
+function volverAtrasBorradoCliente(){
+    var oUsu = document.getElementById("cliente");
+    oUsu.style.display = "block";
+    var oFormularioDniBorrar = document.eliminarDni;
+    oFormularioDniBorrar.style.display = "none";
+}
+//para mostrar la peticion de dni de modificar un cliente
+function modCliDni(){
+    var oFormularioAlta = document.getElementById("cliente");
+    oFormularioAlta.style.display = "none";
+    var oModDni = document.getElementById("modificaDni");
+    oModDni.style.display = "block";
+}
+//clic volver atras de peticion de dni de mod cliente
+function volverAtrasModCliente(){
+    var oUsu = document.getElementById("cliente");
+    oUsu.style.display = "block";
+    var oModDni = document.getElementById("modificaDni");
+    oModDni.style.display = "none";
+}
+//comprueba que el dni es correcto y saca formulario para modificar un cliente
+function modificaCliente(){
+    if(validarDni() == true){
+        var oModDni = document.getElementById("modificaDni");
+        oModDni.style.display = "none";
+        var oModFor = document.getElementById("modCli");
+        oModFor.style.display = "block";
+    }else{
+        
+    }
+        
+}
+
 //--------------------------Funciones de alta---------------------------------//
 function clienteN(){
-    var sNombre,sApellido,sNif,oCliente;  
+    var sNombre,sApellido,sNif,oCliente,sTel;  
     sNombre = document.altaCli.nombre.value;
     sApellido = document.altaCli.ape.value;   
     sNif = document.altaCli.nif.value;
-    if(validarUsuario() == true){
-        oCliente = new Cliente(sNif,sNombre,sApellido);
+    sTel = document.altaCli.tel.value
+    if(validarCliente() == true){
+        oCliente = new Cliente(sNombre,sApellido,sNif,sTel);
         mensaje(oGestorMultas.altaCliente(oCliente));
     }
 }
+
 //--------------------------Funciones de validacion---------------------------//
-function validarUsuario(){
+function validarCliente(){
     //var oE = oEvento || window.event;
     var bValido = true;
     var sErrores = "";
@@ -130,7 +184,7 @@ function validarUsuario(){
     var sNif = document.altaCli.nif.value.trim();
     document.altaCli.nif.value = document.altaCli.nif.value.trim();
         
-    var oExpRegNif = /[0-9]{7}[A-Z]/;
+    var oExpRegNif = /[0-9]{7}[A-Za-z]/;
 
     if (oExpRegNif.test(sNif) == false){
         if(bValido == true){
@@ -143,15 +197,72 @@ function validarUsuario(){
     else {
         document.altaCli.nif.classList.remove("error");	
     }
-    
-    if(document.altaCli.tipoCli[0].checked){
-        var formulario = document.getElementById("grupoTarifaMiembro");
-        formulario.style.display = "block";
+    var sTel = document.altaCli.tel.value.trim();
+    document.altaCli.tel.value = document.altaCli.tel.value.trim();
+        
+    var oExpRegNif = /^([9,7,6]{1})+([0-9]{8})$/;
+
+    if (oExpRegNif.test(sTel) == false){
+        if(bValido == true){
+            bValido = false;		
+            document.altaCli.tel.focus();		
+        }
+        sErrores += "Telefono incorrecto<br>";
+        document.altaCli.tel.classList.add("error");	
     }
-                
+    else {
+        document.altaCli.tel.classList.remove("error");	
+    }
+    //validacion telefono
+    //Condicion para enviar formulario solo si todos los datos son correctos
+    if (bValido == false){
+        mensaje(sErrores);
+    }
+    
+    return bValido;
+}
+//funcion parar validar solo el dni
+function validarDni(){
+    var bValido = true;
+    var sErrores = "";
+    var oExpRegNif = /[0-9]{7}[A-Za-z]/;
+    
+    var nif2 = document.eliminarDni.nif2.value.trim();
+    document.eliminarDni.nif2.value = document.eliminarDni.nif2.value.trim();
+    
+    if (oExpRegNif.test(nif2) == false){
+        if(bValido == true){
+            bValido = false;		
+            document.eliminarDni.nif2.focus();		
+        }
+        sErrores += "Nif incorrecto<br>";
+        document.eliminarDni.nif2.classList.add("error");	
+    }
+    else {
+        document.eliminarDni.nif2.classList.remove("error");	
+    }
+    //validacion telefono
     //Condicion para enviar formulario solo si todos los datos son correctos
     if (bValido == false){
         mensaje(sErrores);
     }
     return bValido;
+}
+//--------------------------Funciones de borrado-------------------------------//
+function borrarCliente(){
+    var dni = document.eliminarDni.nif2.value;
+    if(validarDni() == true){
+        mensaje(oGestorMultas.borraCliente(dni));
+    }
+}
+//--------------------------Funciones de modificacion--------------------------//
+function modificaCliente(){
+    
+}
+//-------------------------Muestra Cliente para pruebas------------------------//
+function muestraClientes(){
+    var oVentana = open("","","");
+    oVentana.document.title = "Listado de clientes"
+    oVentana.document.body.innerHTML = "<h2>Listado de clientes</h2>";
+    oVentana.document.body.innerHTML += oGestorMultas.listadoClientes();
 }

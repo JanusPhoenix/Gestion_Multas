@@ -17,7 +17,12 @@ body{
 .error {
     background-color:yellow;
 }
-
+#atras{
+    float: right;
+}
+#atrasBorrarCLiente{
+    float: right;
+}
 #menu{
     position: absolute;
     top:50%;
@@ -52,6 +57,17 @@ body{
     padding:5px;
 }
 #empleado{
+    display:none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:400px;
+    margin-left:-200px;
+    height:300px;
+    margin-top:-150px;
+    padding:5px;
+}
+#peticionDni{
     display:none;
     position: absolute;
     top:50%;
@@ -110,4 +126,29 @@ body{
 }
 #grupoTarifaMes{
     display:none;
+}
+#atrasModificaCLiente{
+    float: right;
+}
+#modificaDni{
+    display:none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:400px;
+    margin-left:-200px;
+    height:300px;
+    margin-top:-150px;
+    padding:5px;
+}
+#modCli{
+    display:none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:400px;
+    margin-left:-200px;
+    height:300px;
+    margin-top:-150px;
+    padding:5px;
 }
