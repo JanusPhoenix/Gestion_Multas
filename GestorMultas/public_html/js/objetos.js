@@ -154,6 +154,8 @@ GestorMultas.prototype.modificaCliente = function(sNombre,sApellido,sNif,iTelefo
             this.personas[i].apellido = sApellido;
             this.personas[i].nif = sNif;
             this.personas[i].telefono = iTelefono;
+            sCadena = "Cliente con dni "+sNif+" modificado";
         }
-    }    
+    }
+    return sCadena;
 }

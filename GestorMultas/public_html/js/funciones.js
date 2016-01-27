@@ -18,6 +18,12 @@ function inicio(){
     document.getElementById("modCli").addEventListener("click",modCliDni,false);
     //volver atras del boton de peticion dni de modificar cliente
     document.getElementById("atrasModificaCLiente").addEventListener("click",volverAtrasModCliente,false);
+    //al hacer click en enviar de dni mod clietne
+    document.getElementById("modDni").addEventListener("click",comprobarModClienteDni,false);
+    //modificacion de cliente
+    document.modCli.enviar.addEventListener("click",modificaCliente,false);
+    //atras modifica cliente
+    document.getElementById("atrasFormularioModificacion").addEventListener("click",volverAtrasFormularioModCliente,false);
 }
 //-----------------Funciones para ocultar formularios-------------------------//
 
@@ -106,24 +112,27 @@ function modCliDni(){
     oModDni.style.display = "block";
 }
 //clic volver atras de peticion de dni de mod cliente
-function volverAtrasModCliente(){
+function volverAtrasFormularioModCliente(){
     var oUsu = document.getElementById("cliente");
     oUsu.style.display = "block";
     var oModDni = document.getElementById("modificaDni");
     oModDni.style.display = "none";
 }
-//comprueba que el dni es correcto y saca formulario para modificar un cliente
-function modificaCliente(){
-    if(validarDni() == true){
-        var oModDni = document.getElementById("modificaDni");
-        oModDni.style.display = "none";
-        var oModFor = document.getElementById("modCli");
-        oModFor.style.display = "block";
-    }else{
-        
-    }
-        
+//funcion para ocultar peticion dni para mod y mostrar formulario para cambiar datos
+function mostrarMenuModCliente(){
+    var oModDni = document.getElementById("modificaDni");
+    oModDni.style.display = "none";
+    var oForModCli = document.modCli;
+    oForModCli.style.display = "block";
 }
+//volver atras formulario modificacion
+function volverAtrasModCliente(){
+    var oModDni = document.getElementById("modificaDni");
+    oModDni.style.display = "block";
+    var oForModCli = document.modCli;
+    oForModCli.style.display = "none";
+}
+
 
 //--------------------------Funciones de alta---------------------------------//
 function clienteN(){
@@ -256,8 +265,23 @@ function borrarCliente(){
     }
 }
 //--------------------------Funciones de modificacion--------------------------//
+function comprobarModClienteDni(){
+    var sDni = modificaDni.modiNif.value;
+    var sDniValor = document.querySelector("#modCliente #nifMod");
+    if(oGestorMultas.buscaCliente(sDni) == null )
+        mensaje("No existe cliente con dni: "+sDni)
+    else{
+        mostrarMenuModCliente();
+        sDniValor.setAttribute("value",sDni);
+    }
+}
 function modificaCliente(){
-    
+    var sDni,sNombre,sApellido,sTelefono;
+    sDni = document.modCli.nifMod.value;
+    sTelefono = document.modCli.telMod.value;
+    sApellido = document.modCli.apeMod.value;
+    sNombre = document.modCli.nombreMod.value;
+    mensaje(oGestorMultas.modificaCliente(sNombre,sApellido,sDni,sTelefono));
 }
 //-------------------------Muestra Cliente para pruebas------------------------//
 function muestraClientes(){
