@@ -25,20 +25,6 @@ Cliente.prototype.toHTMLRow = function (){
     return "<tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellido + "</td><td>" + this.telefono + "</td></tr>";
 }
 
-//Funcion del objeto empleado que hereda de persona
-function Empleado(sNif,sNombre,sApellido,dSueldo){
-    Persona.apply(this,[sNif,sNombre,sApellido]);
-    this.sueldo = dSueldo;
-}
-//Realizacion de la herencia
-Empleado.prototype = Object.create(Persona.prototype);
-Empleado.prototype.constructor = Empleado;
-
-//Salida de datos en filas de empleado
-Empleado.prototype.toHTMLRow = function (){
-    return "<tr><td>" + this.nif + "</td><td>" + this.nombre + "</td><td>" + this.apellido + "</td><td>" + this.sueldo + "</td></tr>";
-}
-
 //Funcion del objeto reclamo
 function Reclamo(sId_reclamo,sEstado,dFechaApertura,oCliente){
     this.id = sId_reclamo;
@@ -52,24 +38,10 @@ Reclamo.prototype.toHTMLRow = function (){
     return "<tr><td>" + this.id + "</td><td>" + this.estado + "</td><td>" + this.fecha + "</td><td>" + this.Cliente.toHTMLRow + "</td></tr>";
 }
 
-//Funcion el objeto factura
-function Factura(sId_factura,dFecha,dImporte,oReclamo){
-    this.id = sId_factura;
-    this.fecha = dFecha;
-    this.importe = dImporte;
-    this.Reclamo = oReclamo
-}
-
-//Salida de datos en filas de factura
-Factura.prototype.toHTMLRow = function (){
-    return "<tr><td>" + this.id + "</td><td>" + this.fecha + "</td><td>" + this.importe + "</td><td>" + this.Reclamo.toHTMLRow + "</td></tr>";
-}
-
 //Objeto principal de la aplicacion
 function GestorMultas(){
     this.personas = new Array();
     this.reclamos = new Array();
-    this.facturas = new Array();
 }
 
 //------------------------Funciones de busqueda-------------------------------//
@@ -82,6 +54,15 @@ GestorMultas.prototype.buscaCliente = function (sNif){
             oCliente = this.personas[i];
     }
     return oCliente;
+}
+//Funcion para buscar un reclamos en el array reclamos por su id,DEVUELVE UN RECLAMO.
+GestorMultas.prototype.buscaReclamo = function(iId){
+    var oReclamo = null;
+    for (var i = 0; i < this.reclamos.length; i++) {
+        if(this.reclamos[i].id == iId)
+            oReclamo = this.reclamos[i];
+    }
+    return oReclamo;
 }
 
 //------------------------Funciones de altas----------------------------------//
@@ -101,15 +82,15 @@ GestorMultas.prototype.altaCliente = function (oCliente){
     }        
     return sCadena;	
 }
-//funcion para dar de alta un empleado
-GestorMultas.prototype.altaEmpleado = function (oEmpleado){
+//Funcion para insertar un reclamo
+GestorMultas.prototype.altaReclamo = function (oReclamo){
     var sCadena = "";
     //Buscamos que el cliente no exista
-    if(this.buscaEmple(oEmpleado.nif) != null)
-        sCadena = "Ya existe un empleado con el dni "+oEmpleado.nif;
+    if(this.buscaCliente(oReclamo.id) != null)
+        sCadena = "Ya existe un reclamo con la id "+oReclamo.id;
     else{
-        this.empleados.push(oEmpleado);
-        sCadena = "Empleado dado de alta";
+        this.reclamos.push(oReclamo);
+        sCadena = "Reclamo dado de alta";
     }        
     return sCadena;	
 }

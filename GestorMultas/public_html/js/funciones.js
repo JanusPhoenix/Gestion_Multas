@@ -6,8 +6,6 @@ function inicio(){
     document.getElementById("cli").addEventListener('click',mostrarFomularioCliente,false);
     document.getElementById("altaCliente").addEventListener('click',mostrarAltaCliente,false);
     document.getElementById("enviar").addEventListener("click",clienteN,false);
-    //Para mostrar y probar
-    document.getElementById("mostrar").addEventListener('click',muestraClientes,false);
     //para eliminar cliente
     document.getElementById("enviarDni").addEventListener('click',borrarCliente,false);
     //mostrar formulario peticion dni para eliminar un cliente
@@ -24,6 +22,10 @@ function inicio(){
     document.modCli.enviar.addEventListener("click",modificaCliente,false);
     //atras modifica cliente
     document.getElementById("atrasFormularioModificacion").addEventListener("click",volverAtrasFormularioModCliente,false);
+    //boton salir formulario cliente
+    document.getElementById("salir").addEventListener("click",salirCliente,false);
+    //Boton reclamos para mostrar menu
+    document.getElementById("reclamos").addEventListener("click",mostrarReclamos,false);
 }
 //-----------------Funciones para ocultar formularios-------------------------//
 
@@ -132,7 +134,20 @@ function volverAtrasPeticionDniModCliente(){
     var oForModCli = document.modificaDni;
     oForModCli.style.display = "none";
 }
-
+//Boton salir de formulario clientes
+function salirCliente(){
+    var menuCli = document.getElementById("cliente");
+    menuCli.style.display = "none";
+    var oMenuPrincipal = document.getElementById("menu");
+    oMenuPrincipal.style.display = "block";
+}
+//mostrar reclamos desde menu principal
+function mostrarReclamos(){
+    var oMenuPrincipal = document.getElementById("menu");
+    oMenuPrincipal.style.display = "none";
+    var oMenuReclamos = document.getElementById("reclamo");
+    oMenuReclamos.style.display = "block";
+}
 
 //--------------------------Funciones de alta---------------------------------//
 function clienteN(){
