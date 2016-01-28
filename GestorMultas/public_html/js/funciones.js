@@ -26,6 +26,8 @@ function inicio(){
     document.getElementById("salir").addEventListener("click",salirCliente,false);
     //Boton reclamos para mostrar menu
     document.getElementById("reclamos").addEventListener("click",mostrarReclamos,false);
+    //mostrar formulario alta reclamo
+    document.getElementById("nuevoReclamo").addEventListener("click",mostrarFormularioReclamo,false);
 }
 //-----------------Funciones para ocultar formularios-------------------------//
 
@@ -148,6 +150,13 @@ function mostrarReclamos(){
     var oMenuReclamos = document.getElementById("reclamo");
     oMenuReclamos.style.display = "block";
 }
+//Mostrar formulario reclamos
+function mostrarFormularioReclamo(){
+    var oMenuReclamos = document.getElementById("reclamo");
+    oMenuReclamos.style.display = "none";
+    var oFormularioReclamos = document.altaReclamo;
+    oFormularioReclamos.style.display = "block";
+}
 
 //--------------------------Funciones de alta---------------------------------//
 function clienteN(){
@@ -269,6 +278,43 @@ function validarDni(){
     //Condicion para enviar formulario solo si todos los datos son correctos
     if (bValido == false){
         mensaje(sErrores);
+    }
+    return bValido;
+}
+//funcion para validar datos de alta de reclamo nuevo
+function validaFormularioReclamo(){
+    var bValido = true;
+    var sErrores = "";
+    //validacion id
+    var oExpRegId = /[0-9]{4}/
+    var id = document.altaReclamo.idReclamo.value.trim();
+    document.altaReclamo.idReclamo.value.value = document.altaReclamo.idReclamo.value.trim();
+    if (oExpRegId.test(id) == false){
+        if(bValido == true){
+            bValido = false;		
+            document.altaReclamo.idReclamo.focus();		
+        }
+        sErrores += "Id incorrecto<br>";
+        document.altaReclamo.idReclamo.classList.add("error");	
+    }
+    else {
+        document.altaReclamo.idReclamo.classList.remove("error");	
+    }
+    //validacion dni cliente
+    var oExpRegNif = /[0-9]{7}[A-Za-z]/;
+    
+    var nif = document.altaReclamo.dniClienteReclamo.value.trim();
+    document.altaReclamo.dniClienteReclamo.value = document.altaReclamo.dniClienteReclamo.value.trim();
+    if (oExpRegNif.test(nif) == false){
+        if(bValido == true){
+            bValido = false;		
+            document.altaReclamo.dniClienteReclamo.focus();		
+        }
+        sErrores += "Id incorrecto<br>";
+        document.altaReclamo.dniClienteReclamo.classList.add("error");	
+    }
+    else {
+        document.altaReclamo.dniClienteReclamo.classList.remove("error");	
     }
     return bValido;
 }

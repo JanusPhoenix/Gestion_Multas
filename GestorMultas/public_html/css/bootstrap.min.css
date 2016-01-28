@@ -34,7 +34,7 @@ body{
     padding:5px;
 }
 
-#cliente {    
+#cliente,#altaReclamo {    
     display:none;
     position: absolute;
     top:50%;
