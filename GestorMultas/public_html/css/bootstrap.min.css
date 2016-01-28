@@ -20,7 +20,7 @@ body{
 #atras{
     float: right;
 }
-#atrasBorrarCLiente{
+#atrasBorrarCLiente,#atrasFormularioModificacion{
     float: right;
 }
 #menu{

@@ -17,7 +17,7 @@ function inicio(){
     //Clic para mostrar dni de mod cliente
     document.getElementById("modCli").addEventListener("click",modCliDni,false);
     //volver atras del boton de peticion dni de modificar cliente
-    document.getElementById("atrasModificaCLiente").addEventListener("click",volverAtrasModCliente,false);
+    document.getElementById("atrasModificaCLiente").addEventListener("click",volverAtrasPeticionDniModCliente,false);
     //al hacer click en enviar de dni mod clietne
     document.getElementById("modDni").addEventListener("click",comprobarModClienteDni,false);
     //modificacion de cliente
@@ -113,10 +113,10 @@ function modCliDni(){
 }
 //clic volver atras de peticion de dni de mod cliente
 function volverAtrasFormularioModCliente(){
-    var oUsu = document.getElementById("cliente");
-    oUsu.style.display = "block";
+    var oUsu = document.getElementById("modCliente");
+    oUsu.style.display = "none";
     var oModDni = document.getElementById("modificaDni");
-    oModDni.style.display = "none";
+    oModDni.style.display = "block";
 }
 //funcion para ocultar peticion dni para mod y mostrar formulario para cambiar datos
 function mostrarMenuModCliente(){
@@ -125,11 +125,11 @@ function mostrarMenuModCliente(){
     var oForModCli = document.modCli;
     oForModCli.style.display = "block";
 }
-//volver atras formulario modificacion
-function volverAtrasModCliente(){
-    var oModDni = document.getElementById("modificaDni");
+//volver atras formulario peticion dni de modCliente
+function volverAtrasPeticionDniModCliente(){
+    var oModDni = document.getElementById("cliente");
     oModDni.style.display = "block";
-    var oForModCli = document.modCli;
+    var oForModCli = document.modificaDni;
     oForModCli.style.display = "none";
 }
 
@@ -267,12 +267,20 @@ function borrarCliente(){
 //--------------------------Funciones de modificacion--------------------------//
 function comprobarModClienteDni(){
     var sDni = modificaDni.modiNif.value;
+    var oCliente = oGestorMultas.buscaCliente(sDni);
     var sDniValor = document.querySelector("#modCliente #nifMod");
+    var sNombreValor = document.querySelector("#modCliente #nombreMod");
+    var sApeValor = document.querySelector("#modCliente #apeMod");
+    var sTelValor = document.querySelector("#modCliente #telefonoMod");
+    
     if(oGestorMultas.buscaCliente(sDni) == null )
         mensaje("No existe cliente con dni: "+sDni)
     else{
         mostrarMenuModCliente();
         sDniValor.setAttribute("value",sDni);
+        sNombreValor.setAttribute("value",oCliente.nombre);
+        sApeValor.setAttribute("value",oCliente.apellido);
+        sTelValor.setAttribute("value",oCliente.telefono);
     }
 }
 function modificaCliente(){
