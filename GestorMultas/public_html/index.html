@@ -18,13 +18,16 @@ and open the template in the editor.
         <script type="text/javascript"  src="js/toastr.js"></script>   
     </head>
     <body>
-        <div id="menu" class="table-responsive">
-        <table class="table table-hover">
+    <div id="btnCarga">
+        <input id="btnCargar" class="form-control" tabindex="5" type="button" value="Cargar Datos XML" />
+    </div>
+       <div id="menu" class="table-responsive">
+           <table class="table table-hover">
             <tr><td width="300" align="center">MENU GESTIONES</td></tr>
                 <tr id="cli"><td>1.CLIENTES</td></tr>
                 <tr id="reclamos"><td>2.RECLAMOS</td></tr>
-                <tr><td>3.EMPLEADOS</td></tr>
-                <tr><td>4.FACTURA</td></tr>
+                <tr id="menuEmpleado"><td>3.EMPLEADOS</td></tr>
+                <tr id="menuFactura"><td>4.FACTURA</td></tr>
         </table>
         </div>
         <div id="cliente" class="table-responsive">
@@ -33,33 +36,34 @@ and open the template in the editor.
                 <tr id="altaCliente"><td>1.ALTA CLIENTE</td></tr>
                 <tr id="modCli"><td>2.MODIFICAR CLIENTE</td></tr>
                 <tr id="eliminar"><td>3.ELIMINAR CLIENTE</td></tr>
-                <tr id="salir"><td>4.SALIR</td></tr>                
+                <tr name="salir"><td>4.SALIR</td></tr>
             </table>
         </div>
         <div id="reclamo" class="table-responsive">
             <table class="table table-hover">
                 <tr><td width="300" align="center">MENU RECLAMOS</td></tr>
                 <tr id="nuevoReclamo"><td>1.NUEVO RECLAMO</td></tr>
-                <tr><td>2.ACTUALIZACION DE RECLAMO</td></tr>
-                <tr><td>3.SEGUIMIENTO DE RECLAMO</td></tr>
-                <tr><td>4.SALIR</td></tr>                
+                <tr id="actuReclamo"><td>2.ACTUALIZACION DE RECLAMO</td></tr>
+                <tr id="seguimientoReclamo"><td>3.SEGUIMIENTO DE RECLAMO</td></tr>
+                <tr name="salir"><td>4.SALIR</td></tr>
             </table>
         </div>
         <div id="empleado" class="table-responsive">
             <table class="table table-hover">
                 <tr><td width="300" align="center">MENU EMPLEADOS</td></tr>
-                <tr><td>1.ALTA EMPLEADO</td></tr>
-                <tr><td>2.MODIFICAR EMPLEADO</td></tr>
-                <tr><td>3.ELIMINAR EMPLEADO</td></tr>
-                <tr><td>4.SALIR</td></tr>                
+                <tr id="altaEmpleado"><td>1.ALTA EMPLEADO</td></tr>
+                <tr id="modificaEmpleado"><td>2.MODIFICAR EMPLEADO</td></tr>
+                <tr id="eliminarEmpleado"><td>3.ELIMINAR EMPLEADO</td></tr>
+                <tr name="salir"><td>4.SALIR</td></tr>
             </table>
         </div>
         <div id="factura" class="table-responsive">
             <table class="table table-hover">
                 <tr><td width="300" align="center">MENU FACTURAS</td></tr>
-                <tr><td>1.EMITIR FACTURA</td></tr>
-                <tr><td>2.VER HISTORIAL DE FACTURAS</td></tr>
-                <tr><td>3.SALIR</td></tr>                
+                <tr id="nuevaFactura"><td>1.NUEVA FACTURA</td></tr>
+                <tr id="emiteFactura"><td>2.EMITIR FACTURA</td></tr>
+                <tr id="historialFacturas"><td>3.VER HISTORIAL DE FACTURAS</td></tr>
+                <tr name="salir"><td>4.SALIR</td></tr>
             </table>
         </div>
         <form role="form" action="" name="altaCli" method="GET" id="altaCli">
@@ -85,7 +89,7 @@ and open the template in the editor.
             <div class="form-group col-xs-12">
                <input type="button" name="enviar" id="enviar" class="btn btn-primary" tabindex="10" value="Enviar">
                <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
-               <input type="button" id="atras" onclick="volverAtrasCliente();" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+               <input type="button" id="atras" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
             </div>
         </form>
         <!--Formulario para pedir el dni que sera usado para eliminar un cliente -->
@@ -144,6 +148,7 @@ and open the template in the editor.
                <input type="button" id="atrasFormularioModificacion" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
             </div>
         </form>
+        <!--Formulario para dar de alta un reclamo-->
         <form role="form" action="" name="altaReclamo" method="GET" id="altaReclamo">
             <fieldset>
                 <legend>Datos para el alta de un nuevo reclamo</legend>
@@ -154,8 +159,8 @@ and open the template in the editor.
                 <div class="form-group">
                     <label for="est">Estado del reclamo</label>  
                     <select name="est" id="estReclamo" class="form-control" tabindex="2" title="Estado">
-                        <option value="Pro">En Proceso</option>
-                        <option value="Defi">Definitiva</option>
+                        <option value="En proceso">En Proceso</option>
+                        <option value="Definitiva">Definitiva</option>
                     </select>
                 </div>	   		
                 <div class="form-group">
@@ -168,10 +173,203 @@ and open the template in the editor.
                 </div> 
             </fieldset>
             <div class="form-group col-xs-12">
-               <input type="button" name="enviar" id="enviarMod" class="btn btn-primary" tabindex="10" value="Enviar">
+               <input type="button" name="enviar" id="enviarAltaReclamo" class="btn btn-primary" tabindex="10" value="Enviar">
                <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
-               <input type="button" id="atrasFormularioModificacion" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+               <input type="button" id="atrasFormAltaReclamo" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
             </div>
+        </form>
+        <!--Formulario para pedir la id que sera usado para actualizar un reclamo -->
+        <form role="form" action="" name="actualizaReclamo" method="GET" id="actuRec">
+            <fieldset>
+                <legend>Datos</legend>
+                <div class="form-group">
+                    <label for="nif2">Introduce una id para actualizar</label>
+                    <input name="modId" type="text" id="modiId" class="form-control" placeholder="ID" tabindex="3" title="Id">
+                </div>
+                <div class="form-group col-xs-12">
+               <input type="button" name="enviar" id="modId" class="btn btn-primary" tabindex="10" value="Enviar">
+               <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+               <input type="button" id="atrasBotonModReclamo" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">               
+            </div>
+            </fieldset>
+        </form>
+        <!--Formulario para modificar un reclamo-->
+        <form role="form" action="" name="altaModReclamo" method="GET" id="altaModReclamo">
+            <fieldset>
+                <legend>Datos para el alta de un nuevo reclamo</legend>
+                <div class="form-group">
+                    <label for="id">Id reclamo</label>
+                    <input name="idModReclamo"  type="text" id="idModReclamo" placeholder="ID" class="form-control" tabindex="1" title="ID">
+                </div>
+                <div class="form-group">
+                    <label for="est">Estado del reclamo</label>  
+                    <select name="estMod" id="estMod" class="form-control" tabindex="2" title="Estado">
+                        <option value="En proceso">En Proceso</option>
+                        <option value="Definitiva">Definitiva</option>
+                    </select>
+                </div>	   		
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input name="fechaMod" type="date" id="fechaMod" class="form-control" tabindex="3" title="Fecha">
+                </div>
+                 <div class="form-group">
+                    <label for="dni">Dni Cliente</label>
+                    <input name="dniClienteModReclamo" type="text" id="dniClienteModReclamo" class="form-control" placeholder="Dni" tabindex="3" title="Dni">
+                </div> 
+            </fieldset>
+            <div class="form-group col-xs-12">
+               <input type="button" name="enviar" id="enviarAltaModReclamo" class="btn btn-primary" tabindex="10" value="Enviar">
+               <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+               <input type="button" id="atrasFormAltaModReclamo" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+            </div>
+        </form>
+        <!--Formulario para pedir la id para seguimiento de reclamo -->
+        <form role="form" action="" name="seguimientoReclamo" method="GET" id="segRec">
+            <fieldset>
+                <legend>Datos</legend>
+                <div class="form-group">
+                    <label for="nif2">Introduce una id para su seguimiento</label>
+                    <input name="modId" type="text" id="segiId" class="form-control" placeholder="ID" tabindex="3" title="Id">
+                </div>
+                <div class="form-group col-xs-12">
+               <input type="button" name="enviar" id="segId" class="btn btn-primary" tabindex="10" value="Enviar">
+               <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+               <input type="button" id="atrasBotonSegReclamo" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">               
+            </div>
+            </fieldset>
+        </form>
+        <!--- FORMULARIO ALTA EMPLEADO -->
+        <form role="form" action="" name="altaEmp" method="GET" id="altaEmp">
+            <fieldset>
+                <legend>Datos de Empleado</legend>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input name="nombrEmp"  type="text" id="nombrEmp" placeholder="Nombre" class="form-control" tabindex="1" title="Nombre">
+                </div>
+                <div class="form-group">
+                    <label for="apEmp">Apellidos</label>
+                    <input name="apelEmp" type="text" id="apelEmp" placeholder="Apellidos" class="form-control" tabindex="2" title="Apellidos">
+                </div>
+                <div class="form-group">
+                    <label for="nifEmp">Dni</label>
+                    <input name="nifEmp" type="text" id="nifEmp" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                </div>
+                <div class="form-group">
+                    <label for="telEmp">Telefono Contacto</label>
+                    <input name="telEmp" type="text" id="telEmp" class="form-control" placeholder="Telefono" tabindex="3" title="Telefono">
+                </div>
+                <div class="form-group">
+                    <label for="sue">Sueldo</label>
+                    <input name="sueldo" type="text" id="sueldo" class="form-control" placeholder="Sueldo" tabindex="3" title="Sueldo">
+                </div>
+            </fieldset>
+            <div class="form-group col-xs-12">
+                <input type="button" name="enviarEmp" id="enviarEmp" class="btn btn-primary" tabindex="10" value="Enviar">
+                <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+                <input type="button" id="atrasEmp"  tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+            </div>
+        </form>
+        <!-- MODIFICAR EMPLEADO ---------->
+        <form role="form" action="" name="modificaDniEmp" method="GET" id="modificaDniEmp">
+            <fieldset>
+                <legend>Datos</legend>
+                <div class="form-group">
+                    <label for="nif2">Introduce dni para modificar</label>
+                    <input name="modiNifEmp" type="text" id="modiNifEmp" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                </div>
+                <div class="form-group col-xs-12">
+                    <input type="button" name="enviar" id="modDniEmp" class="btn btn-primary" tabindex="10" value="Enviar">
+                    <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+                    <input type="button" id="atrasEmpDni" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+                </div>
+            </fieldset>
+        </form>
+        <form role="form" action="" name="modEmp" method="GET" id="modEmp">
+            <fieldset>
+                <legend>Datos para la modificacion de un empleado</legend>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input name="nombreModEmp"  type="text" id="nombreModEmp" placeholder="Nombre" class="form-control" tabindex="1" title="Nombre">
+                </div>
+                <div class="form-group">
+                    <label for="ape">Apellidos</label>
+                    <input name="apeModEmp" type="text" id="apeModEmp" placeholder="Apellidos" class="form-control" tabindex="2" title="Apellidos">
+                </div>
+                <div class="form-group">
+                    <label for="nif">Dni</label>
+                    <input name="nifModEmp" type="text" id="nifModEmp" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                </div>
+                <div class="form-group">
+                    <label for="tel">Telefono Contacto</label>
+                    <input name="telModEmp" type="text" id="telefonoModEmp" class="form-control" placeholder="Telefono" tabindex="3" title="Telefono">
+                </div>
+                <div class="form-group">
+                    <label for="suel">Sueldo</label>
+                    <input name="sueldoModEmp" type="text" id="sueldoModEmp" class="form-control" placeholder="Sueldo" tabindex="3" title="Sueldo">
+                </div>
+            </fieldset>
+            <div class="form-group col-xs-12">
+                <input type="button" name="enviar" id="enviarModEmp" class="btn btn-primary" tabindex="10" value="Enviar">
+                <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+                <input type="button" id="atrasModificacionEmpleado" tabindex="10" class="btn btn-primary" name="atrasModificacionEmpleado" value="Volver atrás">
+            </div>
+        </form>
+        <!--------------- BORRAR EMPLEADO -->
+        <form role="form" action="" name="eliminarDniEmp" method="GET" id="eliminarDniEmp">
+            <fieldset>
+                <legend>Datos</legend>
+                <div class="form-group">
+                    <label for="nif2">Introduce dni para borrar</label>
+                    <input name="nif2Emp" type="text" id="nif2Emp" class="form-control" placeholder="NIF" tabindex="3" title="Nif">
+                </div>
+                <div class="form-group col-xs-12">
+                    <input type="button" name="enviarEmp" id="enviarDniEmp" class="btn btn-primary" tabindex="10" value="Enviar">
+                    <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+                    <input type="button" id="atrasBorrarEmp" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+                </div>
+            </fieldset>
+        </form>
+        <!--- NUEVA FACTURA ------>
+        <form role="form" action="" name="formFactura" method="GET" id="formFactura">
+            <fieldset>
+                <legend>Datos para emitir una Factura</legend>
+                <div class="form-group">
+                    <label for="id">Id factura</label>
+                    <input name="idFactura"  type="text" id="idFactura" placeholder="ID" class="form-control" tabindex="1" title="ID">
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input name="fechaFactura" type="date" id="fechaFactura" placeholder="Fecha" class="form-control" tabindex="3" title="Fecha">
+                </div>
+                <div class="form-group">
+                    <label for="impor">Importe</label>
+                    <input name="importeFactura" type="text" id="importeFactura" placeholder="Importe" class="form-control" tabindex="3" title="Importe">
+                </div>
+                <div class="form-group">
+                    <label for="recl">Id reclamo</label>
+                    <input name="idFacturaReclamo" type="text" id="idFacturaReclamo" class="form-control" placeholder="Id Reclamo" tabindex="3" title="Id reclamo">
+                </div>
+            </fieldset>
+            <div class="form-group col-xs-12">
+                <input type="button" name="enviar" id="enviarFactura" class="btn btn-primary" tabindex="10" value="Enviar">
+                <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+                <input type="button" id="atrasFormFactura" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+            </div>
+        </form>
+        <!-- EMITE FACTURA -->
+        <form role="form" action="" name="emisionFactura" method="GET" id="emisionFactura">
+            <fieldset>
+                <legend>Datos</legend>
+                <div class="form-group">
+                    <label for="idfac">Introduce id de factura</label>
+                    <input name="idModFactura" type="text" id="idModFactura" class="form-control" placeholder="ID" tabindex="3" title="Id Factura">
+                </div>
+                <div class="form-group col-xs-12">
+                    <input type="button" name="enviarModFac" id="enviarModFac" class="btn btn-primary" tabindex="10" value="Enviar">
+                    <input type="reset" tabindex="10" class="btn btn-primary" value="Borrar">
+                    <input type="button" id="atrasBorrarFac" tabindex="10" class="btn btn-primary" name="volver" value="Volver atrás">
+                </div>
+            </fieldset>
         </form>
         <div id="mensajes">
             <h2 id="textoMensaje"></h2>

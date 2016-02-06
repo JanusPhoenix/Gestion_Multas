@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GestionMulta>
+    <Personas>
+        <clientes>
+            <nombre>Andrea</nombre>
+            <apellido>Martinez</apellido>
+            <dni>47898785Q</dni>
+            <telefono>654789123</telefono>
+        </clientes>
+        <empleados>
+            <nombre>Juan</nombre>
+            <apellido>Fernandez</apellido>
+            <dni>47898444Q</dni>
+            <telefono>666789123</telefono>
+            <sueldo>1200</sueldo>
+        </empleados>
+     </Personas>
+     <Reclamos>
+             <idReclamo>0001</idReclamo>
+             <estado>Definitiva</estado>
+             <fecha>12/04/2015</fecha>
+             <dniCliente>47898785Q</dniCliente>
+     </Reclamos>
+     <Facturas>
+             <idFactura>1111</idFactura>
+             <fechaFactura>15/04/2015</fechaFactura>
+             <importe>130</importe>
+             <idReclamoFactura>0001</idReclamoFactura>
+     </Facturas>
+</GestionMulta>
